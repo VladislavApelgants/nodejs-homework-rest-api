@@ -11,7 +11,11 @@ const {
   },
 } = require("../../controllers");
 
-const { validateBody, isValidId } = require("../../middlewares");
+const {
+  validateBody,
+  isValidId,
+  validateBodyFavorite,
+} = require("../../middlewares");
 const {
   joiContactsShema,
   updateFavoriteSchema,
@@ -34,7 +38,7 @@ router.put(
 router.patch(
   "/:id/favorite",
   isValidId,
-  validateBody(updateFavoriteSchema),
+  validateBodyFavorite(updateFavoriteSchema),
   updateFavoriteById
 );
 

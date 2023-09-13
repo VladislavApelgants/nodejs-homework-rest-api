@@ -38,13 +38,16 @@ const joiContactsShema = Joi.object({
   phone: Joi.string()
     .pattern(/^\(\d{3}\) \d{3}-\d{4}$/)
     .required(),
-  favorite: Joi.boolean().required(),
+  favorite: Joi.boolean(),
 })
   .unknown(false)
   .messages(messagesErrors);
 
 const updateFavoriteSchema = Joi.object({
   favorite: Joi.boolean().required(),
+}).messages({
+  "boolean.favorite": "Field {#label} must be a true or false.",
+  "any.required": "missing required {#label} field",
 });
 
 const Contact = model("contact", contactSchema);
